@@ -1,0 +1,391 @@
+<div id="mfc-paid">
+<style>
+#mfc-paid{--red:#E04E39;--red-ink:#C93D29;--brown:#4A2015;--brown-2:#623B2A;--beige:#C39367;--sand:#E7D4C2;--band:#F3E9E1;--ink:#2C2A29;--muted:#6D6460;--rule:#E7D4C2;--head:"Circe","PT Sans",Arial,sans-serif;--text:"PT Sans",Arial,sans-serif;--narrow:"PT Sans Narrow","Arial Narrow",Arial,sans-serif;color:var(--ink);font:18px/1.55 var(--text);background:#fff;}
+#mfc-paid *{box-sizing:border-box;}
+#mfc-paid h2,#mfc-paid h3,#mfc-paid p,#mfc-paid ul,#mfc-paid ol,#mfc-paid dl,#mfc-paid table{margin:0;padding:0;letter-spacing:normal;text-transform:none;}
+#mfc-paid h2,#mfc-paid h3{font-family:var(--head);text-wrap:balance;color:var(--brown-2);}
+#mfc-paid h2{font-weight:800;font-size:clamp(28px,4vw,40px);line-height:1.08;}
+#mfc-paid a{color:var(--red-ink);}
+#mfc-paid :focus-visible{outline:3px solid var(--red);outline-offset:2px;}
+#mfc-paid .mp-sec{padding:56px 28px;}
+#mfc-paid .mp-band{background:var(--band);}
+#mfc-paid .mp-intro{color:var(--muted);max-width:62ch;margin-top:12px;}
+#mfc-paid .mp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;font:700 18px/1 var(--text);text-decoration:none;border:2px solid transparent;border-radius:4px;cursor:pointer;box-shadow:none;}
+#mfc-paid .mp-red{background:var(--red);color:#fff;}
+#mfc-paid .mp-red:hover{background:#C93D29;color:#fff;}
+#mfc-paid .mp-line{border-color:rgba(243,233,225,.55);color:#F3E9E1;background:transparent;}
+#mfc-paid .mp-line:hover{border-color:#F3E9E1;color:#fff;}
+#mfc-paid .mp-ghost{border-color:var(--rule);color:var(--ink);background:#fff;}
+#mfc-paid .mp-actions{display:flex;flex-wrap:wrap;gap:12px;}
+#mfc-paid .mp-hero{background:var(--brown);color:#F3E9E1;display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:end;padding:48px 28px;}
+#mfc-paid .mp-hero h2{color:#fff;font-size:clamp(36px,5.5vw,64px);line-height:1;}
+#mfc-paid .mp-hero h2 span{display:block;font-weight:600;font-size:.5em;line-height:1.15;color:var(--beige);margin-top:12px;}
+#mfc-paid .mp-lead{margin:20px 0 28px;max-width:46ch;color:#F3E9E1;}
+#mfc-paid .mp-now{border-top:4px solid var(--red);background:rgba(255,255,255,.06);padding:22px 24px;font-size:17px;}
+#mfc-paid .mp-state{display:flex;align-items:center;gap:10px;font:700 20px/1.2 var(--head);color:#fff;}
+#mfc-paid .mp-dot{width:12px;height:12px;border-radius:50%;background:#8FC27A;flex:none;}
+#mfc-paid .mp-dot.off{background:var(--beige);}
+#mfc-paid .mp-when{margin:4px 0 18px;color:var(--sand);font-family:var(--narrow);}
+#mfc-paid .mp-now dl{display:grid;gap:12px;}
+#mfc-paid .mp-now dt{font:400 15px/1.2 var(--narrow);color:var(--beige);}
+#mfc-paid .mp-now dd{margin:2px 0 0;color:#fff;}
+#mfc-paid .mp-now dd a{color:#fff;}
+#mfc-paid .mp-tel{font:700 24px/1.2 var(--head);text-decoration:none;}
+#mfc-paid .mp-nav{display:flex;flex-wrap:wrap;gap:4px 8px;border-bottom:1px solid var(--rule);padding:0 16px;}
+#mfc-paid .mp-nav a{font:700 17px/1 var(--narrow);color:var(--brown-2);text-decoration:none;padding:18px 12px 15px;border-bottom:3px solid transparent;}
+#mfc-paid .mp-nav a:hover{border-color:var(--red);}
+#mfc-paid .mp-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px;}
+#mfc-paid .mp-search{width:min(100%,340px);height:52px;padding:0 16px;border:2px solid var(--rule);border-radius:4px;background:#fff;font:400 17px var(--text);color:var(--ink);}
+#mfc-paid .mp-group+.mp-group{margin-top:48px;}
+#mfc-paid .mp-group h3{display:flex;align-items:center;gap:14px;font-weight:700;font-size:25px;line-height:1.15;margin-bottom:6px;}
+#mfc-paid .mp-group h3 svg{width:22px;height:22px;flex:none;}
+#mfc-paid .mp-note{margin:0 0 12px 36px;font:400 16px/1.4 var(--narrow);color:var(--muted);}
+#mfc-paid .mp-rows{list-style:none;}
+#mfc-paid .mp-rows li{display:grid;grid-template-columns:1fr auto;column-gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule);margin:0;}
+#mfc-paid .mp-rows li::before{display:none;content:none;}
+#mfc-paid .mp-name{display:flex;align-items:baseline;gap:10px;min-width:0;}
+#mfc-paid .mp-name::after{content:"";flex:1 1 24px;min-width:24px;border-bottom:2px dotted var(--beige);transform:translateY(-5px);opacity:.7;}
+#mfc-paid .mp-price{font:700 24px/1 var(--head);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;}
+#mfc-paid .mp-price i{font-style:normal;font-size:.7em;color:var(--muted);margin-left:3px;}
+#mfc-paid .mp-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;margin-top:4px;font:400 15px/1.3 var(--narrow);color:var(--muted);}
+#mfc-paid .mp-meta button{all:unset;cursor:pointer;font:700 15px/1.3 var(--narrow);color:var(--red-ink);border-bottom:1px solid currentColor;}
+#mfc-paid .mp-empty{padding:24px 0;color:var(--muted);}
+#mfc-paid .mp-basis{margin-top:32px;font:400 16px/1.45 var(--narrow);color:var(--muted);max-width:70ch;}
+#mfc-paid .mp-steps{list-style:none;margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s;}
+#mfc-paid .mp-steps li{counter-increment:s;border-top:2px solid var(--ink);padding-top:16px;margin:0;}
+#mfc-paid .mp-steps li::before{content:counter(s);display:block;font:800 42px/1 var(--head);color:var(--red);margin-bottom:10px;}
+#mfc-paid .mp-steps b{display:block;font:700 20px/1.25 var(--head);margin-bottom:6px;}
+#mfc-paid .mp-steps p{color:var(--muted);font-size:17px;}
+#mfc-paid .mp-bring{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+#mfc-paid .mp-bring h3{font-size:21px;font-weight:700;margin-bottom:10px;}
+#mfc-paid .mp-bring ul{padding-left:20px;font-size:17px;}
+#mfc-paid .mp-bring li{margin:0 0 4px;}
+#mfc-paid .mp-small{margin-top:20px;font:400 16px/1.4 var(--narrow);color:var(--muted);}
+#mfc-paid .mp-book{display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start;}
+#mfc-paid .mp-book aside p{margin-top:14px;color:var(--muted);}
+#mfc-paid .mp-bigtel{display:block;margin-top:24px;font:800 30px/1.1 var(--head);color:var(--ink);text-decoration:none;}
+#mfc-paid form{background:#fff;border:1px solid var(--rule);padding:26px;display:grid;gap:18px;margin:0;}
+#mfc-paid .mp-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+#mfc-paid label.mp-f{display:grid;gap:6px;font:700 16px/1.2 var(--narrow);color:var(--ink);margin:0;}
+#mfc-paid .mp-hint{font-weight:400;color:var(--muted);}
+#mfc-paid .mp-f input,#mfc-paid .mp-f select,#mfc-paid .mp-f textarea{width:100%;min-height:50px;height:auto;padding:10px 14px;border:2px solid var(--rule);border-radius:4px;background:#fff;color:var(--ink);font:400 17px/1.3 var(--text);margin:0;box-shadow:none;}
+#mfc-paid .mp-f textarea{min-height:84px;resize:vertical;}
+#mfc-paid .mp-err{font:400 16px/1.3 var(--narrow);color:var(--red-ink);}
+#mfc-paid .mp-agree{display:flex;gap:10px;align-items:flex-start;font-size:16px;color:var(--muted);margin:0;}
+#mfc-paid .mp-agree input{width:20px;height:20px;margin-top:3px;accent-color:var(--red);flex:none;}
+#mfc-paid .mp-consent,#mfc-paid .mp-policy{margin:-8px 0 0 30px;font:400 15px/1.45 var(--narrow);color:var(--muted);}
+#mfc-paid .mp-consent summary{cursor:pointer;width:fit-content;font-weight:700;color:var(--red-ink);}
+#mfc-paid .mp-consent p{margin-top:8px;}
+#mfc-paid .mp-result{border-top:4px solid var(--red);background:var(--band);padding:20px;display:grid;gap:14px;}
+#mfc-paid .mp-result b{font:700 20px/1.2 var(--head);}
+#mfc-paid .mp-result pre{margin:0;white-space:pre-wrap;font:400 16px/1.45 var(--text);background:#fff;border:1px solid var(--rule);padding:14px 16px;color:var(--ink);}
+#mfc-paid .mp-result p{font-size:16px;color:var(--muted);}
+#mfc-paid .mp-contacts{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px;}
+#mfc-paid .mp-addr{font:700 25px/1.25 var(--head);margin-bottom:6px;}
+#mfc-paid .mp-contacts dl{margin-top:24px;display:grid;grid-template-columns:max-content 1fr;gap:12px 24px;}
+#mfc-paid .mp-contacts dt{font:400 16px/1.5 var(--narrow);color:var(--muted);}
+#mfc-paid .mp-contacts dd{margin:0;}
+#mfc-paid .mp-hours{width:100%;border-collapse:collapse;border:0;font-variant-numeric:tabular-nums;}
+#mfc-paid .mp-hours caption{text-align:left;font:700 21px/1.2 var(--head);color:var(--brown-2);padding-bottom:10px;}
+#mfc-paid .mp-hours td{padding:11px 12px;border:0;border-bottom:1px solid var(--rule);background:none;}
+#mfc-paid .mp-hours td:last-child{text-align:right;}
+#mfc-paid .mp-hours tr.off td:last-child{color:var(--muted);}
+#mfc-paid .mp-hours tr.today td{background:var(--band);font-weight:700;}
+#mfc-paid .mp-hours tr.today td:first-child{box-shadow:inset 4px 0 0 var(--red);}
+#mfc-paid .mp-branches{margin-top:28px;font-size:17px;}
+#mfc-paid .mp-branches h3{font-size:21px;font-weight:700;margin-bottom:8px;}
+#mfc-paid .mp-branches p{margin-bottom:8px;}
+#mfc-paid .mp-branches small{color:var(--muted);font-size:15px;}
+#mfc-paid .mp-foot{background:var(--brown);color:var(--sand);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;padding:32px 28px;font:400 16px/1.45 var(--narrow);}
+#mfc-paid .mp-foot b{color:#fff;font-family:var(--text);}
+#mfc-paid .mp-foot p a{color:#fff;}
+#mfc-paid [hidden]{display:none !important;}
+@media (max-width:900px){#mfc-paid .mp-hero,#mfc-paid .mp-book,#mfc-paid .mp-contacts{grid-template-columns:1fr;}#mfc-paid .mp-steps,#mfc-paid .mp-bring{grid-template-columns:1fr;gap:22px;}}
+@media (max-width:560px){#mfc-paid{font-size:17px;}#mfc-paid .mp-sec,#mfc-paid .mp-hero,#mfc-paid .mp-foot{padding:40px 16px;}#mfc-paid .mp-actions .mp-btn{flex:1 1 100%;}#mfc-paid .mp-price{font-size:21px;}#mfc-paid .mp-two{grid-template-columns:1fr;}#mfc-paid form{padding:18px 14px;}#mfc-paid .mp-contacts dl{grid-template-columns:1fr;gap:2px;}#mfc-paid .mp-contacts dd{margin-bottom:12px;}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mp-sign" viewBox="0 0 1183 1606"><path fill="#623B2A" d="M592,0 L0,591 L592,591 Z"/><path fill="#E04E39" d="M592,0 H1183 V851 A420 420 0 0 1 973,1215 L592,1435 V1046 L803,924 A84 84 0 0 0 845,851 V338 H592 Z"/><path fill="#C39367" d="M0,591 H338 V1021 A84 84 0 0 0 380,1094 L592,1216 V1606 L210,1385 A420 420 0 0 1 0,1021 Z"/></symbol></svg>
+<div class="mp-hero">
+<div>
+<h2>Платные услуги МФЦ<span>Белозерск, проспект Советский, 31</span></h2>
+<p class="mp-lead">Копируем и печатаем документы, готовим проекты договоров, заполняем декларации 3-НДФЛ и заявления о внесудебном банкротстве, оформляем железнодорожные билеты.</p>
+<div class="mp-actions"><a class="mp-btn mp-red" href="#mp-zapis">Записаться на услугу</a><a class="mp-btn mp-line" href="https://belozersk.mfc35.ru/site/">Главная страница сайта МФЦ</a></div>
+</div>
+<div class="mp-now">
+<p class="mp-state"><span class="mp-dot" id="mp-dot"></span><span id="mp-nowState">Режим работы</span></p>
+<p class="mp-when" id="mp-nowWhen">Вт-Чт 9:00-17:00, Пт-Сб 9:00-15:00</p>
+<dl>
+<div><dt>Телефон</dt><dd><a class="mp-tel" href="tel:+78175623272">8 (81756) 2-32-72</a></dd></div>
+<div><dt>Адрес</dt><dd>161200, Вологодская область, г. Белозерск, проспект Советский, д. 31</dd></div>
+<div><dt>Электронная почта</dt><dd><a href="mailto:mfc.belozer@mfc.gov35.ru">mfc.belozer@mfc.gov35.ru</a></dd></div>
+</dl>
+</div>
+</div>
+<div class="mp-nav"><a href="#mp-ceny">Цены</a><a href="#mp-kak">Как получить услугу</a><a href="#mp-zapis">Запись</a><a href="#mp-kontakty">Контакты</a></div>
+<div class="mp-sec mp-band" id="mp-ceny">
+<div class="mp-head">
+<div><h2>Цены на 2026 год</h2><p class="mp-intro">Цена указана за единицу: за лист, договор, декларацию или билет.</p></div>
+<input class="mp-search" id="mp-q" type="search" placeholder="Найти услугу" aria-label="Найти услугу" autocomplete="off" maxlength="60">
+</div>
+<div id="mp-list">
+<!-- ПРЕЙСКУРАНТ. Чтобы поменять цену, исправьте число в data-price и в теге mp-price. data-book="1" - на услугу можно записаться. -->
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Копии, печать, сканирование</h3><p class="mp-note">Без записи, в часы работы. Формат А4.</p><ul class="mp-rows">
+<li data-price="11,50" data-unit="1 лист"><div class="mp-name"><span>Ксерокопия, односторонняя</span></div><div class="mp-price">11,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="14,50" data-unit="1 лист"><div class="mp-name"><span>Ксерокопия, двусторонняя</span></div><div class="mp-price">14,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="22" data-unit="1 лист"><div class="mp-name"><span>Печать с флешки или телефона, чёрно-белая</span></div><div class="mp-price">22<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="31,50" data-unit="1 лист"><div class="mp-name"><span>Печать с флешки или телефона, цветная, простая бумага</span></div><div class="mp-price">31,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="23,50" data-unit="1 лист"><div class="mp-name"><span>Сканирование с записью на флешку, без распознавания текста</span></div><div class="mp-price">23,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="34" data-unit="1 лист"><div class="mp-name"><span>Сканирование с записью на флешку, с распознаванием текста</span></div><div class="mp-price">34<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="35" data-unit="1 лист"><div class="mp-name"><span>Сканирование с распознаванием текста и печатью, односторонняя печать</span></div><div class="mp-price">35<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="41,50" data-unit="1 лист"><div class="mp-name"><span>Ламинирование документа</span></div><div class="mp-price">41,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+</ul></div>
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Договоры и расписки</h3><p class="mp-note">Готовим проект договора. Цена за один объект недвижимости.</p><ul class="mp-rows">
+<li data-book="1" data-price="2 100" data-unit="1 договор"><div class="mp-name"><span>Проект договора купли-продажи, дарения, мены или аренды недвижимости, 2 участника</span></div><div class="mp-price">2 100<i>₽</i></div><div class="mp-meta"><span>за 1 договор</span></div></li>
+<li data-book="1" data-price="2 700" data-unit="1 договор"><div class="mp-name"><span>Купля-продажа недвижимости с материнским капиталом или единовременной выплатой по закону Вологодской области, до 5 участников</span></div><div class="mp-price">2 700<i>₽</i></div><div class="mp-meta"><span>за 1 договор</span></div></li>
+<li data-book="1" data-price="2 700" data-unit="1 договор"><div class="mp-name"><span>Купля-продажа недвижимости с ипотекой, до 5 участников</span></div><div class="mp-price">2 700<i>₽</i></div><div class="mp-meta"><span>за 1 договор</span></div></li>
+<li data-book="1" data-price="4 300" data-unit="1 договор"><div class="mp-name"><span>Договор купли-продажи с участием юридического лица</span></div><div class="mp-price">4 300<i>₽</i></div><div class="mp-meta"><span>за 1 договор</span></div></li>
+<li data-book="1" data-price="1 100" data-unit="1 договор"><div class="mp-name"><span>Купля-продажа транспортного средства, наём жилья и иные договоры, 2 участника</span></div><div class="mp-price">1 100<i>₽</i></div><div class="mp-meta"><span>за 1 договор</span></div></li>
+<li data-book="1" data-price="500" data-unit="1 расписка"><div class="mp-name"><span>Расписка о передаче денежных средств</span></div><div class="mp-price">500<i>₽</i></div><div class="mp-meta"><span>за 1 расписку</span></div></li>
+<li data-book="1" data-price="200" data-unit="1 консультация"><div class="mp-name"><span>Консультация по договору купли-продажи с последующей подготовкой договора</span></div><div class="mp-price">200<i>₽</i></div><div class="mp-meta"><span>за 1 консультацию</span></div></li>
+</ul></div>
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Декларации 3-НДФЛ</h3><p class="mp-note">Заполняем декларацию для налогового вычета.</p><ul class="mp-rows">
+<li data-book="1" data-price="800" data-unit="1 декларация"><div class="mp-name"><span>За обучение, лечение, лекарства, покупку или продажу недвижимости</span></div><div class="mp-price">800<i>₽</i></div><div class="mp-meta"><span>за 1 декларацию</span></div></li>
+<li data-book="1" data-price="1 300" data-unit="1 декларация"><div class="mp-name"><span>Со сведениями из справки 2-НДФЛ</span></div><div class="mp-price">1 300<i>₽</i></div><div class="mp-meta"><span>за 1 декларацию</span></div></li>
+<li data-book="1" data-price="1 600" data-unit="1 декларация"><div class="mp-name"><span>За строительство жилого дома</span></div><div class="mp-price">1 600<i>₽</i></div><div class="mp-meta"><span>за 1 декларацию</span></div></li>
+</ul></div>
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Банкротство во внесудебном порядке</h3><p class="mp-note">Заполняем заявление о признании гражданина банкротом.</p><ul class="mp-rows">
+<li data-book="1" data-price="200" data-unit="1 консультация"><div class="mp-name"><span>Консультация по заполнению заявления</span></div><div class="mp-price">200<i>₽</i></div><div class="mp-meta"><span>за 1 консультацию</span></div></li>
+<li data-book="1" data-price="6 500" data-unit="1 заявление"><div class="mp-name"><span>Заполнение заявления, до 10 справок</span></div><div class="mp-price">6 500<i>₽</i></div><div class="mp-meta"><span>за 1 заявление</span></div></li>
+<li data-book="1" data-price="13 000" data-unit="1 заявление"><div class="mp-name"><span>Заполнение заявления, более 10 справок</span></div><div class="mp-price">13 000<i>₽</i></div><div class="mp-meta"><span>за 1 заявление</span></div></li>
+</ul></div>
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Билеты и факс</h3><ul class="mp-rows">
+<li data-book="1" data-price="300" data-unit="1 билет"><div class="mp-name"><span>Оформление железнодорожного билета в электронном виде</span></div><div class="mp-price">300<i>₽</i></div><div class="mp-meta"><span>за 1 билет</span></div></li>
+<li data-price="36" data-unit="1 лист"><div class="mp-name"><span>Факс по Вологодской области, отправка и приём</span></div><div class="mp-price">36<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+<li data-price="37,50" data-unit="1 лист"><div class="mp-name"><span>Факс по России, отправка и приём</span></div><div class="mp-price">37,50<i>₽</i></div><div class="mp-meta"><span>за 1 лист</span></div></li>
+</ul></div>
+<div class="mp-group"><h3><svg aria-hidden="true"><use href="#mp-sign"/></svg>Реклама в МФЦ</h3><ul class="mp-rows">
+<li data-price="20,50" data-unit="1 шт. на 1 месяц"><div class="mp-name"><span>Размещение визиток, листовок и другой мелкой рекламы</span></div><div class="mp-price">20,50<i>₽</i></div><div class="mp-meta"><span>за 1 шт. на 1 месяц</span></div></li>
+</ul></div>
+<p class="mp-empty" id="mp-empty" hidden>Такой услуги нет в списке. Позвоните 8 (81756) 2-32-72, подскажем.</p>
+</div>
+<p class="mp-basis">Цены утверждены приказом директора МБУ «МФЦ Белозерского муниципального округа» на основании калькуляции стоимости платных услуг на 2026 год. Платные услуги не заменяют государственные и муниципальные услуги: приём документов на госуслуги в МФЦ проводится бесплатно.</p>
+</div>
+<div class="mp-sec" id="mp-kak">
+<h2>Как получить услугу</h2>
+<p class="mp-intro">Копии, печать, сканирование и ламинирование делаем без записи, в часы работы. На договор, декларацию, банкротство и билеты лучше записаться заранее: специалист выделит для вас время.</p>
+<ol class="mp-steps">
+<li><b>Запишитесь</b><p>Заполните заявку ниже или позвоните по телефону 8 (81756) 2-32-72.</p></li>
+<li><b>Приходите с документами</b><p>Возьмите паспорт и документы по вашему вопросу. Список ниже.</p></li>
+<li><b>Оплатите и получите результат</b><p>Оплата по ценам из прейскуранта. Готовый проект договора или декларацию вы получите на руки.</p></li>
+</ol>
+<div class="mp-bring">
+<div><h3>Для договора</h3><ul><li>паспорта всех участников сделки</li><li>документы на объект: выписка из ЕГРН, свидетельство или договор, по которому получено имущество</li><li>для сделки с материнским капиталом - сертификат</li><li>для автомобиля - ПТС и свидетельство о регистрации</li></ul></div>
+<div><h3>Для декларации 3-НДФЛ</h3><ul><li>паспорт и ИНН</li><li>справка о доходах (2-НДФЛ) за нужный год</li><li>документы о расходах: договор, чеки, справка об оплате лечения или обучения</li><li>реквизиты банковского счёта для возврата налога</li></ul></div>
+<div><h3>Для заявления о банкротстве</h3><ul><li>паспорт, СНИЛС и ИНН</li><li>список кредиторов и сумм долга</li><li>справки и документы о долгах и исполнительных производствах</li></ul></div>
+</div>
+<p class="mp-small">Точный список зависит от вашего случая. Если сомневаетесь, позвоните нам до визита.</p>
+</div>
+<div class="mp-sec mp-band" id="mp-zapis">
+<div class="mp-book">
+<aside>
+<h2>Запись на платную услугу</h2>
+<p>Выберите услугу и удобный день. Заявка откроется в вашей почте как готовое письмо в МФЦ, останется нажать «Отправить». Мы перезвоним и подтвердим время.</p>
+<a class="mp-bigtel" href="tel:+78175623272">8 (81756) 2-32-72</a>
+<p>Или запишитесь по телефону: вторник - суббота, в часы работы МФЦ.</p>
+</aside>
+<form id="mp-form" novalidate>
+<label class="mp-f" for="mp-svc">Услуга<select id="mp-svc"></select></label>
+<div class="mp-two">
+<label class="mp-f" for="mp-day">Желаемый день <span class="mp-hint">Вт-Сб</span><input id="mp-day" type="date"><span class="mp-err" id="mp-dayErr" hidden></span></label>
+<label class="mp-f" for="mp-time">Время<select id="mp-time"><option value="">Сначала выберите день</option></select></label>
+</div>
+<div class="mp-two">
+<label class="mp-f" for="mp-name">Как к вам обращаться<input id="mp-name" type="text" autocomplete="name" placeholder="Имя и отчество" maxlength="60"></label>
+<label class="mp-f" for="mp-phone">Телефон для связи<input id="mp-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="8 900 000-00-00" maxlength="20"></label>
+</div>
+<label class="mp-f" for="mp-comment">Комментарий <span class="mp-hint">необязательно, до 500 знаков</span><textarea id="mp-comment" maxlength="500" placeholder="Например: продажа дома, 3 участника"></textarea><span class="mp-hint">Не пишите паспортные данные, СНИЛС и сведения о здоровье: для записи они не нужны.</span></label>
+<label class="mp-agree" for="mp-agree"><input id="mp-agree" type="checkbox"><span>Даю согласие МБУ «МФЦ Белозерского муниципального округа» на обработку моих персональных данных (имя, телефон, комментарий) для записи на платную услугу.</span></label>
+<details class="mp-consent">
+<summary>Полный текст согласия</summary>
+<p>Заполняя форму записи, я свободно, своей волей и в своём интересе даю согласие МБУ «МФЦ Белозерского муниципального округа» (161200, Вологодская область, г. Белозерск, проспект Советский, д. 31) на обработку моих персональных данных: имя и отчество, номер телефона, сведения, которые я указал(а) в комментарии.</p>
+<p>Цель обработки: запись на платную услугу и связь со мной для подтверждения времени приёма. Действия с данными: сбор, запись, хранение, использование, удаление и уничтожение, с использованием средств автоматизации и без них. Данные не передаются третьим лицам.</p>
+<p>Согласие действует до достижения цели обработки. Я могу отозвать согласие, направив заявление на mfc.belozer@mfc.gov35.ru или по адресу МФЦ.</p>
+</details>
+<p class="mp-policy">Подробнее: <a href="https://belozersk.mfc35.ru/site/wp-content/uploads/sites/10/2021/09/политика-обработки-персональных-данных.pdf" target="_blank" rel="noopener">Политика обработки персональных данных</a> (PDF)</p>
+<span class="mp-err" id="mp-formErr" hidden></span>
+<button class="mp-btn mp-red" type="submit">Подготовить заявку</button>
+<div class="mp-result" id="mp-result" hidden>
+<b>Заявка готова</b>
+<pre id="mp-text"></pre>
+<div class="mp-actions"><a class="mp-btn mp-red" id="mp-mail" href="#">Отправить письмом</a><button class="mp-btn mp-ghost" type="button" id="mp-copy">Скопировать текст</button></div>
+<p>Если почта не открылась, скопируйте текст и отправьте его на mfc.belozer@mfc.gov35.ru или позвоните 8 (81756) 2-32-72.</p>
+</div>
+</form>
+</div>
+</div>
+<div class="mp-sec" id="mp-kontakty">
+<h2>Контакты и режим работы</h2>
+<div class="mp-contacts">
+<div>
+<p class="mp-addr">г. Белозерск, проспект Советский, д. 31</p>
+<a href="https://yandex.ru/maps/?text=%D0%91%D0%B5%D0%BB%D0%BE%D0%B7%D0%B5%D1%80%D1%81%D0%BA%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9%2C%2031" target="_blank" rel="noopener">Открыть на Яндекс Картах</a>
+<dl>
+<dt>Телефон</dt><dd>8 (81756) 2-32-72</dd>
+<dt>Факс</dt><dd>8 (81756) 2-32-62</dd>
+<dt>Почта</dt><dd>mfc.belozer@mfc.gov35.ru</dd>
+</dl>
+<div class="mp-branches">
+<h3>Удалённые рабочие места</h3>
+<p>с. Зубово, ул. Мира, д. 1А<br><small>понедельник - пятница, 14:00-16:00</small></p>
+<p>п. Нижняя Мондома, ул. Советская, д. 22<br><small>по предварительной записи</small></p>
+<p><small>Какие платные услуги доступны на удалённых местах, уточняйте по телефону.</small></p>
+</div>
+</div>
+<div>
+<table class="mp-hours" id="mp-hours"><caption>Часы работы в Белозерске</caption><tbody>
+<tr class="off" data-d="1"><td>Понедельник</td><td>не приёмный день</td></tr>
+<tr data-d="2"><td>Вторник</td><td>9:00-17:00</td></tr>
+<tr data-d="3"><td>Среда</td><td>9:00-17:00</td></tr>
+<tr data-d="4"><td>Четверг</td><td>9:00-17:00</td></tr>
+<tr data-d="5"><td>Пятница</td><td>9:00-15:00</td></tr>
+<tr data-d="6"><td>Суббота</td><td>9:00-15:00</td></tr>
+<tr class="off" data-d="0"><td>Воскресенье</td><td>выходной</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="mp-foot"><p><b>МБУ «МФЦ Белозерского муниципального округа»</b><br>Цены на платные услуги на 2026 год<br><a href="https://belozersk.mfc35.ru/site/wp-content/uploads/sites/10/2021/09/политика-обработки-персональных-данных.pdf" target="_blank" rel="noopener">Политика обработки персональных данных</a></p><a class="mp-btn mp-line" href="https://belozersk.mfc35.ru/site/">Главная страница сайта МФЦ</a></div>
+<script>
+(function(){
+'use strict';
+/* Логирование. Уровни: debug, info, warn, error. Подробный режим: добавьте ?debug=1 к адресу страницы.
+   ВАЖНО: в лог не пишем имя, телефон и комментарий посетителя (152-ФЗ). */
+var log=(function(){
+var L={debug:10,info:20,warn:30,error:40},min=L.info;
+try{if(/[?&]debug=1\b/.test(location.search))min=L.debug;}catch(e){}
+function write(level,fn,msg,ctx){
+if(L[level]<min)return;
+var rec={ts:new Date().toISOString(),app:'mfc-paid',level:level,fn:fn,msg:msg};
+ctx=ctx||{};for(var k in ctx)if(Object.prototype.hasOwnProperty.call(ctx,k))rec[k]=ctx[k];
+try{(console[level]||console.log).call(console,'[mfc-paid]',rec);}catch(e){}}
+return{
+debug:function(f,m,c){write('debug',f,m,c);},
+info:function(f,m,c){write('info',f,m,c);},
+warn:function(f,m,c){write('warn',f,m,c);},
+error:function(f,m,err,c){c=c||{};c.error=err&&err.message;c.stack=err&&err.stack;write('error',f,m,c);}};
+})();
+try{
+var MAIL='mfc.belozer@mfc.gov35.ru';
+var HOURS={2:[9,17],3:[9,17],4:[9,17],5:[9,15],6:[9,15]};
+var DAYS=['воскресенье','понедельник','вторник','среду','четверг','пятницу','субботу'];
+var BOOK_DAYS_AHEAD=60;
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pad(n){return ('0'+n).slice(-2);}
+var groups=[].slice.call(document.querySelectorAll('#mfc-paid .mp-group'));
+var rows=[].slice.call(document.querySelectorAll('#mfc-paid .mp-rows li'));
+/* Поиск */
+$('mp-q').addEventListener('input',function(){
+var q=this.value.trim().toLowerCase(),found=0;
+groups.forEach(function(g){
+var title=g.querySelector('h3').textContent.toLowerCase(),shown=0;
+[].forEach.call(g.querySelectorAll('li'),function(li){var ok=!q||li.textContent.toLowerCase().indexOf(q)>-1||title.indexOf(q)>-1;li.hidden=!ok;if(ok)shown++;});
+g.hidden=!shown;found+=shown;});
+$('mp-empty').hidden=found>0;
+log.debug('search','Прейскурант отфильтрован',{queryLength:q.length,found:found});});
+/* Список услуг для записи и кнопки «Записаться» */
+var svc=$('mp-svc'),opts='<option value="">Выберите услугу</option>';
+groups.forEach(function(g){
+var bookable=[].filter.call(g.querySelectorAll('li'),function(li){return li.dataset.book;});
+if(!bookable.length)return;
+opts+='<optgroup label="'+esc(g.querySelector('h3').textContent)+'">';
+bookable.forEach(function(li){
+var i=rows.indexOf(li),name=li.querySelector('.mp-name').textContent;
+opts+='<option value="'+i+'">'+esc(name)+' - '+esc(li.dataset.price)+' ₽</option>';
+var b=document.createElement('button');b.type='button';b.textContent='Записаться на эту услугу';
+b.addEventListener('click',function(){svc.value=String(i);log.info('bookFromList','Выбрана услуга из прейскуранта',{row:i});$('mp-zapis').scrollIntoView({behavior:'smooth'});});
+li.querySelector('.mp-meta').appendChild(b);});
+opts+='</optgroup>';});
+svc.innerHTML=opts+'<option value="other">Другая платная услуга (напишите в комментарии)</option>';
+/* Услуга по номеру строки или null, если номер подменён */
+function rowByValue(v){if(!/^\d+$/.test(v))return null;var li=rows[+v];return li&&li.dataset.book?li:null;}
+/* Открыто ли сейчас (время московское) */
+function renderNow(){
+try{
+var p=new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Moscow',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+var get=function(t){return p.filter(function(x){return x.type===t;})[0].value;};
+var wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(get('weekday')),min=+get('hour')*60+ +get('minute'),h=HOURS[wd];
+var open=h&&min>=h[0]*60&&min<h[1]*60,next='';
+if(!open){for(var i=0;i<8;i++){var d=(wd+i)%7,hh=HOURS[d];if(hh&&(i>0||min<hh[0]*60)){next=i===0?'сегодня в '+hh[0]+':00':i===1?'завтра в '+hh[0]+':00':'в '+DAYS[d]+' в '+hh[0]+':00';break;}}}
+$('mp-dot').classList.toggle('off',!open);
+$('mp-nowState').textContent=open?'Сейчас открыто':'Сейчас закрыто';
+$('mp-nowWhen').textContent=open?'Сегодня работаем до '+h[1]+':00':'Откроемся '+next;
+/* Снимаем выделение со вчерашнего дня, если страница была открыта всю ночь */
+[].forEach.call(document.querySelectorAll('#mp-hours tr.today'),function(r){r.classList.remove('today');});
+var tr=document.querySelector('#mp-hours tr[data-d="'+wd+'"]');if(tr)tr.classList.add('today');
+}catch(e){log.warn('renderNow','Не удалось определить московское время, показан общий режим',{error:e.message});}}
+renderNow();setInterval(renderNow,60000);
+/* Дата по Москве со сдвигом на n дней, в виде ГГГГ-ММ-ДД */
+function moscowDate(n){
+try{
+var p=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+var get=function(t){return +p.filter(function(x){return x.type===t;})[0].value;};
+return new Date(Date.UTC(get('year'),get('month')-1,get('day')+n)).toISOString().slice(0,10);
+}catch(e){
+log.warn('moscowDate','Нет часового пояса Москвы, берём дату компьютера',{error:e.message});
+var d=new Date();d.setDate(d.getDate()+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}}
+/* Даты записи: с завтрашнего дня на 2 месяца вперёд. Пересчитываем при каждой проверке. */
+function updateDayRange(){var r={min:moscowDate(1),max:moscowDate(BOOK_DAYS_AHEAD)};$('mp-day').min=r.min;$('mp-day').max=r.max;return r;}
+updateDayRange();
+/* Проверка дня: текст ошибки или пустая строка */
+function dayError(v){
+if(!/^\d{4}-\d{2}-\d{2}$/.test(v))return 'Укажите дату полностью.';
+var r=updateDayRange();
+var fmt=function(s){return new Date(s+'T12:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long'});};
+if(v<r.min)return 'Запись возможна с '+fmt(r.min)+'.';
+if(v>r.max)return 'Запись возможна не дальше '+fmt(r.max)+'.';
+if(!HOURS[new Date(v+'T12:00:00').getDay()])return 'В этот день МФЦ не принимает. Выберите вторник - субботу.';
+return '';}
+$('mp-day').addEventListener('change',function(){
+var err=$('mp-dayErr'),time=$('mp-time');time.innerHTML='<option value="">Сначала выберите день</option>';err.hidden=true;
+if(!this.value)return;
+var msg=dayError(this.value);
+if(msg){err.textContent=msg;err.hidden=false;log.debug('dayChange','Неподходящий день',{reason:msg});return;}
+var h=HOURS[new Date(this.value+'T12:00:00').getDay()];
+var o='<option value="">Выберите время</option>';
+for(var t=h[0]*60;t<=h[1]*60-60;t+=30)o+='<option>'+Math.floor(t/60)+':'+pad(t%60)+'</option>';
+time.innerHTML=o;});
+/* Заявка */
+$('mp-form').addEventListener('submit',function(e){
+e.preventDefault();var err=$('mp-formErr');
+function fail(msg,reason){err.textContent=msg;err.hidden=false;$('mp-result').hidden=true;log.info('submit','Заявка не прошла проверку',{reason:reason});}
+var need=[['mp-svc','услугу'],['mp-day','день'],['mp-time','время'],['mp-name','имя'],['mp-phone','телефон']].filter(function(x){return !$(x[0]).value.trim();}).map(function(x){return x[1];});
+if(need.length)return fail('Укажите: '+need.join(', ')+'.','empty_fields');
+var li=svc.value==='other'?null:rowByValue(svc.value);
+if(svc.value!=='other'&&!li)return fail('Выберите услугу из списка.','bad_service');
+var dayMsg=dayError($('mp-day').value);
+if(dayMsg){$('mp-dayErr').textContent=dayMsg;$('mp-dayErr').hidden=false;return fail(dayMsg,'bad_day');}
+var tv=$('mp-time').value;
+if(![].some.call($('mp-time').options,function(o){return o.value&&o.value===tv;}))return fail('Выберите время из списка.','bad_time');
+var digits=$('mp-phone').value.replace(/\D/g,'');
+if(digits.length<10||digits.length>12)return fail('Проверьте номер телефона: нужно 10-11 цифр, например 8 900 000-00-00.','bad_phone');
+if(!$('mp-agree').checked)return fail('Отметьте согласие на обработку персональных данных.','no_consent');
+err.hidden=true;
+var s=li?li.querySelector('.mp-name').textContent+' ('+li.dataset.price+' руб. за '+li.dataset.unit+')':'Другая платная услуга';
+var date=new Date($('mp-day').value+'T12:00:00').toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
+var c=$('mp-comment').value.trim();
+var text='Прошу записать меня на платную услугу.\n\nУслуга: '+s+'\nЖелаемое время: '+date+', '+tv+'\nИмя: '+$('mp-name').value.trim()+'\nТелефон: '+$('mp-phone').value.trim()+(c?'\nКомментарий: '+c:'')+'\n\nСогласие на обработку персональных данных даю.';
+$('mp-text').textContent=text;
+$('mp-mail').href='mailto:'+MAIL+'?subject='+encodeURIComponent('Запись на платную услугу')+'&body='+encodeURIComponent(text);
+$('mp-result').hidden=false;
+/* Только обезличенные сведения: какая услуга и день, без имени и телефона */
+log.info('submit','Заявка подготовлена',{service:li?svc.value:'other',day:$('mp-day').value,hasComment:!!c});});
+$('mp-copy').addEventListener('click',function(){
+var el=$('mp-text'),btn=this;
+function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Текст выделен, нажмите Ctrl+C';}
+try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent='Скопировано';},function(e){log.warn('copy','Буфер обмена недоступен',{error:e&&e.message});sel();});}
+catch(e){log.warn('copy','Буфер обмена недоступен',{error:e.message});sel();}});
+log.info('init','Блок платных услуг готов',{services:rows.length});
+}catch(e){log.error('init','Ошибка запуска блока платных услуг',e);}
+})();
+</script>
+</div>

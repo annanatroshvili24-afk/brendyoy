@@ -1,0 +1,671 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Платные услуги МФЦ Белозерск</title>
+<style>
+  /* Фирменные цвета «Мои Документы» */
+  :root {
+    --red: #E04E39;
+    --red-ink: #C93D29;
+    --brown: #4A2015;      /* фон логотипа на коричневом */
+    --brown-2: #623B2A;
+    --beige: #C39367;
+    --sand: #E7D4C2;
+    --light: #F3E9E1;
+    --ink: #2C2A29;
+    --muted: #6D6460;
+    --paper: #FFFFFF;
+    --band: #F3E9E1;
+    --rule: #E7D4C2;
+    --field: #FFFFFF;
+    --on-brown: #F3E9E1;
+
+    /* Шрифты не загружаем с Google (адреса посетителей не уходят за границу, 152-ФЗ).
+       Если сайт подключает Jost и PT Sans у себя, они подхватятся, иначе - системные. */
+    --head: "Jost", "Segoe UI", Arial, sans-serif;
+    --text: "PT Sans", "Segoe UI", Arial, sans-serif;
+    --narrow: "PT Sans Narrow", "Arial Narrow", Arial, sans-serif;
+    --wrap: 1120px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ink: #F3E9E1; --muted: #BFAFA4; --paper: #1F1410; --band: #2A1B15;
+      --rule: #4A3329; --field: #2A1B15; --brown-2: #DBBEA4; --red-ink: #EC7A68;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ink: #F3E9E1; --muted: #BFAFA4; --paper: #1F1410; --band: #2A1B15;
+    --rule: #4A3329; --field: #2A1B15; --brown-2: #DBBEA4; --red-ink: #EC7A68;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.55 var(--text); }
+  table, input, select, textarea, button { font: inherit; color: inherit; }
+  img { max-width: 100%; }
+  a { color: var(--red-ink); }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: 24px; }
+  h1, h2, h3 { font-family: var(--head); text-wrap: balance; }
+  h2 { font-weight: 800; font-size: clamp(30px, 4vw, 44px); line-height: 1.05; margin: 0; color: var(--brown-2); }
+  .intro { color: var(--muted); max-width: 62ch; margin: 12px 0 0; }
+
+  /* Кнопки */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 26px;
+         font: 700 18px/1 var(--text); text-decoration: none; border: 2px solid transparent; border-radius: 4px; cursor: pointer; }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-red:hover { background: #C93D29; }
+  .btn-line { border-color: rgba(243,233,225,.55); color: var(--on-brown); }
+  .btn-line:hover { border-color: var(--on-brown); }
+  .btn-ghost { border-color: var(--rule); color: var(--ink); background: var(--field); }
+  .btn-ghost:hover { border-color: var(--beige); }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+
+  /* Шапка */
+  .hero { background: var(--brown); color: var(--on-brown); }
+  .hero .wrap { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: end; padding-block: 36px 56px; }
+  .logo { display: block; width: 190px; margin: 0 0 40px -16px; }
+  .hero h1 { margin: 0; font-weight: 800; font-size: clamp(40px, 6.4vw, 76px); line-height: .98; letter-spacing: -.01em; color: #fff; }
+  .hero h1 small { display: block; font-weight: 600; font-size: .5em; line-height: 1.1; color: var(--beige); margin-top: 14px; letter-spacing: 0; }
+  .hero .lead { margin: 22px 0 30px; max-width: 46ch; color: var(--on-brown); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .now { border-top: 4px solid var(--red); background: rgba(255,255,255,.06); padding: 22px 24px 24px; font-size: 17px; }
+  .now .state { display: flex; align-items: center; gap: 10px; font: 700 20px/1.2 var(--head); color: #fff; margin: 0 0 4px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: #8FC27A; flex: none; }
+  .dot.off { background: var(--beige); }
+  .now .when { margin: 0 0 18px; color: var(--sand); font-family: var(--narrow); }
+  .now dl { margin: 0; display: grid; gap: 12px; }
+  .now dt { font: 400 15px/1.2 var(--narrow); color: var(--beige); }
+  .now dd { margin: 2px 0 0; color: #fff; }
+  .now dd a { color: #fff; text-decoration-color: rgba(255,255,255,.4); }
+  .now .tel { font: 700 24px/1.2 var(--head); text-decoration: none; }
+
+  /* Навигация */
+  nav.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  nav.bar .wrap { display: flex; align-items: center; gap: 4px; }
+  nav.bar .links { display: flex; gap: 4px; overflow-x: auto; flex: 1; scrollbar-width: none; }
+  nav.bar a.l { font: 700 17px/1 var(--narrow); color: var(--brown-2); text-decoration: none; padding: 20px 12px 17px; border-bottom: 3px solid transparent; white-space: nowrap; }
+  nav.bar a.l:hover { border-color: var(--red); }
+  nav.bar .btn { min-height: 42px; padding: 0 18px; font-size: 16px; white-space: nowrap; }
+
+  section { padding-block: 72px; }
+  .band { background: var(--band); }
+
+  /* Прейскурант */
+  .price-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; }
+  .search { position: relative; width: min(100%, 380px); }
+  .search input { width: 100%; height: 52px; padding: 0 16px 0 46px; border: 2px solid var(--rule); border-radius: 4px; background: var(--field); font-size: 17px; }
+  .search input:focus { border-color: var(--beige); outline: none; }
+  .search svg { position: absolute; left: 15px; top: 16px; width: 20px; height: 20px; color: var(--muted); }
+  .price-grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
+  .cats { position: sticky; top: 90px; display: grid; gap: 2px; }
+  .cats a { display: flex; justify-content: space-between; gap: 8px; font: 400 17px/1.25 var(--narrow); color: var(--ink); text-decoration: none; padding: 9px 12px; border-left: 3px solid var(--rule); }
+  .cats a:hover { border-color: var(--red); color: var(--red-ink); }
+  .cats a span { color: var(--muted); }
+
+  .group + .group { margin-top: 52px; }
+  .group h3 { display: flex; align-items: center; gap: 14px; margin: 0 0 6px; font-weight: 700; font-size: 26px; line-height: 1.15; color: var(--brown-2); }
+  .group h3 svg { width: 22px; height: 22px; flex: none; }
+  .group .note { margin: 0 0 14px 36px; font: 400 16px/1.4 var(--narrow); color: var(--muted); }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .row { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .row .name { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+  .row .name span { flex: 0 1 auto; }
+  .row .name::after { content: ""; flex: 1 1 24px; min-width: 24px; border-bottom: 2px dotted var(--beige); transform: translateY(-5px); opacity: .7; }
+  .row .price { font: 700 24px/1 var(--head); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  .row .price i { font-style: normal; font-weight: 600; font-size: .7em; color: var(--muted); margin-left: 3px; }
+  .row .meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-top: 4px; font: 400 15px/1.3 var(--narrow); color: var(--muted); }
+  .row .meta button { all: unset; cursor: pointer; font: 700 15px/1.3 var(--narrow); color: var(--red-ink); border-bottom: 1px solid currentColor; }
+  .row .meta button:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  .empty { padding: 28px 0; color: var(--muted); }
+  .basis { margin: 36px 0 0; font: 400 16px/1.45 var(--narrow); color: var(--muted); max-width: 70ch; }
+
+  /* Как записаться */
+  .steps { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; }
+  .steps li { counter-increment: s; border-top: 2px solid var(--ink); padding-top: 16px; }
+  .steps li::before { content: counter(s); display: block; font: 800 44px/1 var(--head); color: var(--red); margin-bottom: 10px; }
+  .steps b { display: block; font: 700 20px/1.25 var(--head); margin-bottom: 6px; }
+  .steps p { margin: 0; color: var(--muted); font-size: 17px; }
+
+  .bring { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .bring h3 { margin: 0 0 10px; font-size: 21px; font-weight: 700; color: var(--brown-2); }
+  .bring ul { margin: 0; padding-left: 20px; font-size: 17px; }
+  .bring li + li { margin-top: 4px; }
+  .bring-note { margin: 22px 0 0; font: 400 16px/1.4 var(--narrow); color: var(--muted); }
+
+  /* Форма записи */
+  .book { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: start; }
+  .book aside p { margin: 14px 0 0; color: var(--muted); }
+  .book .phone-big { display: block; margin-top: 26px; font: 800 32px/1.1 var(--head); color: var(--ink); text-decoration: none; }
+  .book .phone-sub { margin: 4px 0 0; font: 400 16px/1.4 var(--narrow); color: var(--muted); }
+  form { background: var(--paper); border: 1px solid var(--rule); padding: 28px; display: grid; gap: 18px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  label.f { display: grid; gap: 6px; font: 700 16px/1.2 var(--narrow); color: var(--ink); }
+  label.f .hint { font-weight: 400; color: var(--muted); }
+  .f input, .f select, .f textarea { width: 100%; min-height: 50px; padding: 10px 14px; border: 2px solid var(--rule); border-radius: 4px; background: var(--field); font: 400 17px/1.3 var(--text); }
+  .f textarea { min-height: 84px; resize: vertical; }
+  .f input:focus, .f select:focus, .f textarea:focus { border-color: var(--beige); outline: none; }
+  .f .err { font-weight: 400; color: var(--red-ink); }
+  .agree { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; color: var(--muted); }
+  .agree input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--red); flex: none; }
+  .consent, .policy { margin: -8px 0 0 30px; font: 400 15px/1.45 var(--narrow); color: var(--muted); }
+  .consent summary { cursor: pointer; width: fit-content; font-weight: 700; color: var(--red-ink); }
+  .consent p { margin: 8px 0 0; }
+  .result { border-top: 4px solid var(--red); background: var(--band); padding: 20px 22px; display: grid; gap: 14px; }
+  .result b { font: 700 20px/1.2 var(--head); }
+  .result pre { margin: 0; white-space: pre-wrap; font: 400 16px/1.45 var(--text); background: var(--field); border: 1px solid var(--rule); padding: 14px 16px; }
+  .result .actions .btn { min-height: 46px; font-size: 16px; }
+  .result p { margin: 0; font-size: 16px; color: var(--muted); }
+
+  /* Контакты */
+  .contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 36px; }
+  .addr { font: 700 26px/1.25 var(--head); margin: 0 0 6px; }
+  .contacts dl { margin: 28px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 12px 24px; }
+  .contacts dt { font: 400 16px/1.5 var(--narrow); color: var(--muted); }
+  .contacts dd { margin: 0; }
+  .copy { all: unset; cursor: pointer; margin-left: 10px; font: 700 14px/1 var(--narrow); color: var(--red-ink); border-bottom: 1px dashed currentColor; }
+  .copy:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  table.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .hours caption { text-align: left; font: 700 21px/1.2 var(--head); color: var(--brown-2); padding-bottom: 10px; }
+  .hours td { padding: 11px 12px; border-bottom: 1px solid var(--rule); }
+  .hours td:last-child { text-align: right; }
+  .hours tr.off td:last-child { color: var(--muted); }
+  .hours tr.today td { background: var(--band); font-weight: 700; }
+  .hours tr.today td:first-child { box-shadow: inset 4px 0 0 var(--red); }
+  .branches { margin-top: 28px; font-size: 17px; }
+  .branches h3 { margin: 0 0 8px; font-size: 21px; font-weight: 700; color: var(--brown-2); }
+  .branches p { margin: 0 0 8px; }
+  .branches small { color: var(--muted); font-size: 15px; }
+
+  footer { background: var(--brown); color: var(--on-brown); }
+  footer .wrap { display: grid; grid-template-columns: 1fr auto; gap: 24px 48px; align-items: center; padding-block: 40px; }
+  footer p { margin: 0; font: 400 16px/1.45 var(--narrow); color: var(--sand); max-width: 60ch; }
+  footer p b { color: #fff; font-family: var(--text); }
+  footer p a { color: #fff; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 4px; font-size: 16px; z-index: 20; }
+
+  @media (max-width: 900px) {
+    .hero .wrap, .price-grid, .book, .contacts { grid-template-columns: 1fr; }
+    .hero .wrap { gap: 36px; }
+    .cats { position: static; grid-template-columns: repeat(2, 1fr); }
+    .steps, .bring { grid-template-columns: 1fr; gap: 24px; }
+    footer .wrap { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    .wrap { padding-inline: 16px; }
+    section { padding-block: 52px; }
+    .logo { width: 150px; margin: 0 0 28px -12px; }
+    .actions .btn { flex: 1 1 100%; }
+    nav.bar a.l { padding-inline: 8px; font-size: 16px; }
+    nav.bar .btn { display: none; }
+    .cats { grid-template-columns: 1fr; }
+    .row .price { font-size: 21px; }
+    .two { grid-template-columns: 1fr; }
+    form { padding: 20px 16px; }
+    .contacts dl { grid-template-columns: 1fr; gap: 2px; }
+    .contacts dd { margin-bottom: 12px; }
+  }
+</style>
+
+<!-- Знак «Мои Документы» для заголовков разделов -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sign" viewBox="0 0 1183 1606">
+    <path fill="#623B2A" d="M592,0 L0,591 L592,591 Z"/>
+    <path fill="#E04E39" d="M592,0 H1183 V851 A420 420 0 0 1 973,1215 L592,1435 V1046 L803,924 A84 84 0 0 0 845,851 V338 H592 Z"/>
+    <path fill="#C39367" d="M0,591 H338 V1021 A84 84 0 0 0 380,1094 L592,1216 V1606 L210,1385 A420 420 0 0 1 0,1021 Z"/>
+  </symbol>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <img class="logo" src="img/logo.png" alt="Мои Документы - государственные и муниципальные услуги">
+      <h1>Платные услуги МФЦ<small>Белозерск, проспект Советский, 31</small></h1>
+      <p class="lead">Копируем и печатаем документы, готовим проекты договоров, заполняем декларации 3-НДФЛ и заявления о внесудебном банкротстве, оформляем железнодорожные билеты.</p>
+      <div class="actions">
+        <a class="btn btn-red" href="#zapis">Записаться на услугу</a>
+        <a class="btn btn-line" href="https://belozersk.mfc35.ru/site/" target="_blank" rel="noopener">Официальный сайт МФЦ
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg></a>
+      </div>
+    </div>
+    <aside class="now" aria-label="Режим работы сегодня">
+      <p class="state"><span class="dot" id="nowDot"></span><span id="nowState">Режим работы</span></p>
+      <p class="when" id="nowWhen">Вт-Чт 9:00-17:00, Пт-Сб 9:00-15:00</p>
+      <dl>
+        <div><dt>Телефон</dt><dd><a class="tel" href="tel:+78175623272">8 (81756) 2-32-72</a></dd></div>
+        <div><dt>Адрес</dt><dd>161200, Вологодская область, г. Белозерск, проспект Советский, д. 31</dd></div>
+        <div><dt>Электронная почта</dt><dd><a href="mailto:mfc.belozer@mfc.gov35.ru">mfc.belozer@mfc.gov35.ru</a></dd></div>
+      </dl>
+    </aside>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Разделы страницы">
+  <div class="wrap">
+    <div class="links">
+      <a class="l" href="#ceny">Цены</a>
+      <a class="l" href="#kak">Как получить услугу</a>
+      <a class="l" href="#zapis">Запись</a>
+      <a class="l" href="#kontakty">Контакты</a>
+    </div>
+    <a class="btn btn-red" href="#zapis">Записаться</a>
+  </div>
+</nav>
+
+<main>
+  <section class="band" id="ceny">
+    <div class="wrap">
+      <div class="price-head">
+        <div>
+          <h2>Цены на 2026 год</h2>
+          <p class="intro">Цена указана за единицу: за лист, договор, декларацию или билет.</p>
+        </div>
+        <label class="search" for="q">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6"/><path d="M13 13l5 5"/></svg>
+          <input id="q" type="search" placeholder="Найти услугу, например «ламинирование»" aria-label="Найти услугу" autocomplete="off" maxlength="60">
+        </label>
+      </div>
+      <div class="price-grid">
+        <div class="cats" id="cats" aria-label="Разделы прейскуранта"></div>
+        <div id="list"></div>
+      </div>
+      <p class="basis">Цены утверждены приказом директора МБУ «МФЦ Белозерского муниципального округа» на основании калькуляции стоимости платных услуг на 2026 год. Платные услуги не заменяют государственные и муниципальные услуги: приём документов на госуслуги в МФЦ проводится бесплатно.</p>
+    </div>
+  </section>
+
+  <section id="kak">
+    <div class="wrap">
+      <h2>Как получить услугу</h2>
+      <p class="intro">Копии, печать, сканирование и ламинирование делаем без записи, в часы работы. На договор, декларацию, банкротство и билеты лучше записаться заранее: специалист выделит для вас время.</p>
+      <ol class="steps">
+        <li><b>Запишитесь</b><p>Заполните заявку ниже или позвоните по телефону 8 (81756) 2-32-72.</p></li>
+        <li><b>Приходите с документами</b><p>Возьмите паспорт и документы по вашему вопросу. Список ниже.</p></li>
+        <li><b>Оплатите и получите результат</b><p>Оплата по ценам из прейскуранта. Готовый проект договора или декларацию вы получите на руки.</p></li>
+      </ol>
+
+      <div class="bring">
+        <div>
+          <h3>Для договора</h3>
+          <ul>
+            <li>паспорта всех участников сделки</li>
+            <li>документы на объект: выписка из ЕГРН, свидетельство или договор, по которому получено имущество</li>
+            <li>для сделки с материнским капиталом - сертификат</li>
+            <li>для автомобиля - ПТС и свидетельство о регистрации</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Для декларации 3-НДФЛ</h3>
+          <ul>
+            <li>паспорт и ИНН</li>
+            <li>справка о доходах (2-НДФЛ) за нужный год</li>
+            <li>документы о расходах: договор, чеки, справка об оплате лечения или обучения</li>
+            <li>реквизиты банковского счёта для возврата налога</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Для заявления о банкротстве</h3>
+          <ul>
+            <li>паспорт, СНИЛС и ИНН</li>
+            <li>список кредиторов и сумм долга</li>
+            <li>справки и документы о долгах и исполнительных производствах</li>
+          </ul>
+        </div>
+      </div>
+      <p class="bring-note">Точный список зависит от вашего случая. Если сомневаетесь, позвоните нам до визита.</p>
+    </div>
+  </section>
+
+  <section class="band" id="zapis">
+    <div class="wrap book">
+      <aside>
+        <h2>Запись на платную услугу</h2>
+        <p>Выберите услугу и удобный день. Заявка откроется в вашей почте как готовое письмо в МФЦ, останется нажать «Отправить». Мы перезвоним и подтвердим время.</p>
+        <a class="phone-big" href="tel:+78175623272">8 (81756) 2-32-72</a>
+        <p class="phone-sub">Или запишитесь по телефону: вторник - суббота, в часы работы МФЦ.</p>
+      </aside>
+
+      <form id="form" novalidate>
+        <label class="f" for="svc">Услуга
+          <select id="svc" required></select>
+        </label>
+        <div class="two">
+          <label class="f" for="day">Желаемый день <span class="hint">Вт-Сб</span>
+            <input id="day" type="date" required>
+            <span class="err" id="dayErr" hidden></span>
+          </label>
+          <label class="f" for="time">Время
+            <select id="time" required><option value="">Сначала выберите день</option></select>
+          </label>
+        </div>
+        <div class="two">
+          <label class="f" for="name">Как к вам обращаться
+            <input id="name" type="text" autocomplete="name" placeholder="Имя и отчество" maxlength="60" required>
+          </label>
+          <label class="f" for="phone">Телефон для связи
+            <input id="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="8 900 000-00-00" maxlength="20" required>
+          </label>
+        </div>
+        <label class="f" for="comment">Комментарий <span class="hint">необязательно, до 500 знаков</span>
+          <textarea id="comment" maxlength="500" placeholder="Например: продажа дома, 3 участника"></textarea>
+          <span class="hint">Не пишите паспортные данные, СНИЛС и сведения о здоровье: для записи они не нужны.</span>
+        </label>
+        <label class="agree" for="agree"><input id="agree" type="checkbox" required>
+          <span>Даю согласие МБУ «МФЦ Белозерского муниципального округа» на обработку моих персональных данных (имя, телефон, комментарий) для записи на платную услугу.</span></label>
+        <details class="consent">
+          <summary>Полный текст согласия</summary>
+          <p>Заполняя форму записи, я свободно, своей волей и в своём интересе даю согласие МБУ «МФЦ Белозерского муниципального округа» (161200, Вологодская область, г. Белозерск, проспект Советский, д. 31) на обработку моих персональных данных: имя и отчество, номер телефона, сведения, которые я указал(а) в комментарии.</p>
+          <p>Цель обработки: запись на платную услугу и связь со мной для подтверждения времени приёма. Действия с данными: сбор, запись, хранение, использование, удаление и уничтожение, с использованием средств автоматизации и без них. Данные не передаются третьим лицам.</p>
+          <p>Согласие действует до достижения цели обработки. Я могу отозвать согласие, направив заявление на mfc.belozer@mfc.gov35.ru или по адресу МФЦ.</p>
+        </details>
+        <p class="policy">Подробнее: <a href="https://belozersk.mfc35.ru/site/wp-content/uploads/sites/10/2021/09/политика-обработки-персональных-данных.pdf" target="_blank" rel="noopener">Политика обработки персональных данных</a> (PDF)</p>
+        <span class="err f" id="formErr" hidden></span>
+        <button class="btn btn-red" type="submit">Подготовить заявку</button>
+
+        <div class="result" id="result" hidden>
+          <b>Заявка готова</b>
+          <pre id="resultText"></pre>
+          <div class="actions">
+            <a class="btn btn-red" id="mailBtn" href="#">Отправить письмом</a>
+            <button class="btn btn-ghost" type="button" id="copyBtn">Скопировать текст</button>
+          </div>
+          <p>Если почта не открылась, скопируйте текст и отправьте его на mfc.belozer@mfc.gov35.ru или позвоните 8 (81756) 2-32-72.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="kontakty">
+    <div class="wrap">
+      <h2>Контакты и режим работы</h2>
+      <div class="contacts">
+        <div>
+          <p class="addr">г. Белозерск, проспект Советский, д. 31</p>
+          <a href="https://yandex.ru/maps/?text=%D0%91%D0%B5%D0%BB%D0%BE%D0%B7%D0%B5%D1%80%D1%81%D0%BA%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9%2C%2031" target="_blank" rel="noopener">Открыть на Яндекс Картах</a>
+          <dl>
+            <dt>Телефон</dt><dd><span id="tel1">8 (81756) 2-32-72</span><button class="copy" type="button" data-copy="tel1">Скопировать</button></dd>
+            <dt>Факс</dt><dd>8 (81756) 2-32-62</dd>
+            <dt>Почта</dt><dd><span id="mail1">mfc.belozer@mfc.gov35.ru</span><button class="copy" type="button" data-copy="mail1">Скопировать</button></dd>
+            <dt>Сайт</dt><dd><a href="https://belozersk.mfc35.ru/site/" target="_blank" rel="noopener">belozersk.mfc35.ru</a></dd>
+          </dl>
+          <div class="branches">
+            <h3>Удалённые рабочие места</h3>
+            <p>с. Зубово, ул. Мира, д. 1А<br><small>понедельник - пятница, 14:00-16:00</small></p>
+            <p>п. Нижняя Мондома, ул. Советская, д. 22<br><small>по предварительной записи</small></p>
+            <p><small>Какие платные услуги доступны на удалённых местах, уточняйте по телефону.</small></p>
+          </div>
+        </div>
+        <div>
+          <table class="hours" id="hours">
+            <caption>Часы работы в Белозерске</caption>
+            <tbody>
+              <tr class="off" data-d="1"><td>Понедельник</td><td>не приёмный день</td></tr>
+              <tr data-d="2"><td>Вторник</td><td>9:00-17:00</td></tr>
+              <tr data-d="3"><td>Среда</td><td>9:00-17:00</td></tr>
+              <tr data-d="4"><td>Четверг</td><td>9:00-17:00</td></tr>
+              <tr data-d="5"><td>Пятница</td><td>9:00-15:00</td></tr>
+              <tr data-d="6"><td>Суббота</td><td>9:00-15:00</td></tr>
+              <tr class="off" data-d="0"><td>Воскресенье</td><td>выходной</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>МБУ «МФЦ Белозерского муниципального округа»</b><br>Муниципальное бюджетное учреждение Белозерского муниципального округа «Многофункциональный центр предоставления государственных и муниципальных услуг»<br>
+      <a href="https://belozersk.mfc35.ru/site/wp-content/uploads/sites/10/2021/09/политика-обработки-персональных-данных.pdf" target="_blank" rel="noopener">Политика обработки персональных данных</a></p>
+    <a class="btn btn-line" href="https://belozersk.mfc35.ru/site/" target="_blank" rel="noopener">Официальный сайт МФЦ
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg></a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ===== Логирование. Уровни: debug, info, warn, error. Подробный режим: добавьте ?debug=1 к адресу.
+   ВАЖНО: в лог не пишем имя, телефон и комментарий посетителя (152-ФЗ). ===== */
+const log = (() => {
+  const LEVELS = { debug: 10, info: 20, warn: 30, error: 40 };
+  let min = LEVELS.info;
+  try { if (/[?&]debug=1\b/.test(location.search)) min = LEVELS.debug; } catch (e) { /* без адреса страницы */ }
+  const write = (level, fn, msg, ctx = {}) => {
+    if (LEVELS[level] < min) return;
+    // Структура записи подходит для отправки во внешнюю систему (Sentry, ELK)
+    const rec = { ts: new Date().toISOString(), app: 'mfc-paid', level, fn, msg, ...ctx };
+    (console[level] || console.log)('[mfc-paid]', rec);
+  };
+  return {
+    debug: (fn, msg, ctx) => write('debug', fn, msg, ctx),
+    info: (fn, msg, ctx) => write('info', fn, msg, ctx),
+    warn: (fn, msg, ctx) => write('warn', fn, msg, ctx),
+    error: (fn, msg, err, ctx) => write('error', fn, msg, { ...ctx, error: err && err.message, stack: err && err.stack }),
+  };
+})();
+window.addEventListener('error', e => log.error('window', 'Необработанная ошибка', e.error || new Error(e.message)));
+
+/* ===== Прейскурант. Чтобы поменять цену, исправьте число p. book: true - на услугу можно записаться ===== */
+const GROUPS = [
+  { id: 'kopii', title: 'Копии, печать, сканирование', note: 'Без записи, в часы работы. Формат А4.', items: [
+    { n: 'Ксерокопия, односторонняя', u: '1 лист', p: 11.5 },
+    { n: 'Ксерокопия, двусторонняя', u: '1 лист', p: 14.5 },
+    { n: 'Печать с флешки или телефона, чёрно-белая', u: '1 лист', p: 22 },
+    { n: 'Печать с флешки или телефона, цветная, простая бумага', u: '1 лист', p: 31.5 },
+    { n: 'Сканирование с записью на флешку, без распознавания текста', u: '1 лист', p: 23.5 },
+    { n: 'Сканирование с записью на флешку, с распознаванием текста', u: '1 лист', p: 34 },
+    { n: 'Сканирование с распознаванием текста и печатью, односторонняя печать', u: '1 лист', p: 35 },
+    { n: 'Ламинирование документа', u: '1 лист', p: 41.5 },
+  ]},
+  { id: 'dogovory', title: 'Договоры и расписки', note: 'Готовим проект договора. Цена за один объект недвижимости.', items: [
+    { n: 'Проект договора купли-продажи, дарения, мены или аренды недвижимости, 2 участника', u: '1 договор', p: 2100, book: true },
+    { n: 'Купля-продажа недвижимости с материнским капиталом или единовременной выплатой по закону Вологодской области, до 5 участников', u: '1 договор', p: 2700, book: true },
+    { n: 'Купля-продажа недвижимости с ипотекой, до 5 участников', u: '1 договор', p: 2700, book: true },
+    { n: 'Договор купли-продажи с участием юридического лица', u: '1 договор', p: 4300, book: true },
+    { n: 'Купля-продажа транспортного средства, наём жилья и иные договоры, 2 участника', u: '1 договор', p: 1100, book: true },
+    { n: 'Расписка о передаче денежных средств', u: '1 расписка', p: 500, book: true },
+    { n: 'Консультация по договору купли-продажи с последующей подготовкой договора', u: '1 консультация', p: 200, book: true },
+  ]},
+  { id: 'ndfl', title: 'Декларации 3-НДФЛ', note: 'Заполняем декларацию для налогового вычета.', items: [
+    { n: 'За обучение, лечение, лекарства, покупку или продажу недвижимости', u: '1 декларация', p: 800, book: true },
+    { n: 'Со сведениями из справки 2-НДФЛ', u: '1 декларация', p: 1300, book: true },
+    { n: 'За строительство жилого дома', u: '1 декларация', p: 1600, book: true },
+  ]},
+  { id: 'bankrot', title: 'Банкротство во внесудебном порядке', note: 'Заполняем заявление о признании гражданина банкротом.', items: [
+    { n: 'Консультация по заполнению заявления', u: '1 консультация', p: 200, book: true },
+    { n: 'Заполнение заявления, до 10 справок', u: '1 заявление', p: 6500, book: true },
+    { n: 'Заполнение заявления, более 10 справок', u: '1 заявление', p: 13000, book: true },
+  ]},
+  { id: 'bilety', title: 'Билеты и факс', note: '', items: [
+    { n: 'Оформление железнодорожного билета в электронном виде', u: '1 билет', p: 300, book: true },
+    { n: 'Факс по Вологодской области, отправка и приём', u: '1 лист', p: 36 },
+    { n: 'Факс по России, отправка и приём', u: '1 лист', p: 37.5 },
+  ]},
+  { id: 'reklama', title: 'Реклама в МФЦ', note: '', items: [
+    { n: 'Размещение визиток, листовок и другой мелкой рекламы', u: '1 шт. на 1 месяц', p: 20.5 },
+  ]},
+];
+
+const MAIL = 'mfc.belozer@mfc.gov35.ru';
+const HOURS = { 2: [9, 17], 3: [9, 17], 4: [9, 17], 5: [9, 15], 6: [9, 15] }; // день недели: [с, до]
+const DAYS = ['воскресенье', 'понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу'];
+const BOOK_DAYS_AHEAD = 60; // на сколько дней вперёд можно записаться
+
+const $ = id => document.getElementById(id);
+const money = p => p.toLocaleString('ru-RU', { minimumFractionDigits: p % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const signSvg = '<svg aria-hidden="true"><use href="#sign"/></svg>';
+
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 1800);
+}
+
+/* ===== Прейскурант и поиск ===== */
+function renderList(query) {
+  const q = query.trim().toLowerCase();
+  let html = '', found = 0;
+  GROUPS.forEach((g, gi) => {
+    const items = g.items.map((it, ii) => ({ ...it, key: gi + '-' + ii }))
+      .filter(it => !q || it.n.toLowerCase().includes(q) || g.title.toLowerCase().includes(q));
+    if (!items.length) return;
+    found += items.length;
+    html += `<div class="group" id="g-${g.id}"><h3>${signSvg}${esc(g.title)}</h3>` +
+      (g.note ? `<p class="note">${esc(g.note)}</p>` : '') + '<ul class="rows">' +
+      items.map(it => `<li class="row"><div class="name"><span>${esc(it.n)}</span></div>
+        <div class="price">${money(it.p)}<i>₽</i></div>
+        <div class="meta"><span>за ${esc(it.u)}</span>${it.book ? `<button type="button" data-book="${it.key}">Записаться на эту услугу</button>` : ''}</div></li>`).join('') +
+      '</ul></div>';
+  });
+  $('list').innerHTML = found ? html : `<p class="empty">Такой услуги нет в списке. Позвоните 8 (81756) 2-32-72, подскажем.</p>`;
+  log.debug('renderList', 'Прейскурант обновлён', { queryLength: q.length, found });
+}
+$('cats').innerHTML = GROUPS.map(g => `<a href="#g-${g.id}">${esc(g.title)}<span>${g.items.length}</span></a>`).join('');
+$('q').addEventListener('input', e => renderList(e.target.value));
+$('cats').addEventListener('click', () => { if ($('q').value) { $('q').value = ''; renderList(''); } });
+renderList('');
+
+/* ===== Открыто ли сейчас (время московское) ===== */
+function moscowNow() {
+  const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Moscow', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  const wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+  return { wd, min: +get('hour') * 60 + +get('minute') };
+}
+function nextOpen(wd, min) {
+  for (let i = 0; i < 8; i++) {
+    const d = (wd + i) % 7, h = HOURS[d];
+    if (h && (i > 0 || min < h[0] * 60)) return i === 0 ? `сегодня в ${h[0]}:00` : i === 1 ? `завтра в ${h[0]}:00` : `в ${DAYS[d]} в ${h[0]}:00`;
+  }
+}
+function renderNow() {
+  try {
+    const { wd, min } = moscowNow(), h = HOURS[wd];
+    const open = h && min >= h[0] * 60 && min < h[1] * 60;
+    $('nowDot').classList.toggle('off', !open);
+    $('nowState').textContent = open ? 'Сейчас открыто' : 'Сейчас закрыто';
+    $('nowWhen').textContent = open ? `Сегодня работаем до ${h[1]}:00` : `Откроемся ${nextOpen(wd, min)}`;
+    // Снимаем выделение со вчерашнего дня, если страница была открыта всю ночь
+    document.querySelectorAll('#hours tr.today').forEach(r => r.classList.remove('today'));
+    const row = document.querySelector(`#hours tr[data-d="${wd}"]`);
+    if (row) row.classList.add('today');
+  } catch (e) { log.warn('renderNow', 'Не удалось определить московское время, показан общий режим', { error: e.message }); }
+}
+renderNow();
+setInterval(renderNow, 60000);
+
+/* ===== Форма записи ===== */
+const svc = $('svc');
+svc.innerHTML = '<option value="">Выберите услугу</option>' + GROUPS.map((g, gi) => {
+  const items = g.items.map((it, ii) => ({ ...it, key: gi + '-' + ii })).filter(it => it.book);
+  return items.length ? `<optgroup label="${esc(g.title)}">` + items.map(it => `<option value="${it.key}">${esc(it.n)} - ${money(it.p)} ₽</option>`).join('') + '</optgroup>' : '';
+}).join('') + '<option value="other">Другая платная услуга (напишите в комментарии)</option>';
+
+// Возвращает услугу по ключу «группа-номер» или null, если ключ подменён
+function itemByKey(k) {
+  const m = /^(\d+)-(\d+)$/.exec(String(k));
+  const it = m && GROUPS[+m[1]] && GROUPS[+m[1]].items[+m[2]];
+  return it && it.book ? it : null;
+}
+
+$('list').addEventListener('click', e => {
+  const b = e.target.closest('[data-book]'); if (!b) return;
+  svc.value = b.dataset.book;
+  log.info('bookFromList', 'Выбрана услуга из прейскуранта', { key: b.dataset.book });
+  $('zapis').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  setTimeout(() => $('day').focus({ preventScroll: true }), 400);
+});
+
+// Дата по Москве со сдвигом на n дней, в виде ГГГГ-ММ-ДД
+function moscowDate(n) {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Moscow', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+    const get = t => +parts.find(p => p.type === t).value;
+    return new Date(Date.UTC(get('year'), get('month') - 1, get('day') + n)).toISOString().slice(0, 10);
+  } catch (e) {
+    log.warn('moscowDate', 'Нет часового пояса Москвы, берём дату компьютера', { error: e.message });
+    const d = new Date(); d.setDate(d.getDate() + n);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+}
+// Ближайшая дата - завтра (по Москве), не дальше двух месяцев. Пересчитываем при каждой проверке.
+function updateDayRange() {
+  const r = { min: moscowDate(1), max: moscowDate(BOOK_DAYS_AHEAD) };
+  $('day').min = r.min; $('day').max = r.max;
+  return r;
+}
+updateDayRange();
+
+// Проверка дня: возвращает текст ошибки или пустую строку
+function dayError(v) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return 'Укажите дату полностью.';
+  const r = updateDayRange();
+  const fmt = s => new Date(s + 'T12:00:00').toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+  if (v < r.min) return `Запись возможна с ${fmt(r.min)}.`;
+  if (v > r.max) return `Запись возможна не дальше ${fmt(r.max)}.`;
+  if (!HOURS[new Date(v + 'T12:00:00').getDay()]) return 'В этот день МФЦ не принимает. Выберите вторник - субботу.';
+  return '';
+}
+
+$('day').addEventListener('change', () => {
+  const v = $('day').value, err = $('dayErr'), time = $('time');
+  time.innerHTML = '<option value="">Сначала выберите день</option>';
+  err.hidden = true;
+  if (!v) return;
+  const msg = dayError(v);
+  if (msg) { err.textContent = msg; err.hidden = false; log.debug('dayChange', 'Неподходящий день', { reason: msg }); return; }
+  const h = HOURS[new Date(v + 'T12:00:00').getDay()];
+  let opts = '<option value="">Выберите время</option>';
+  for (let t = h[0] * 60; t <= h[1] * 60 - 60; t += 30) opts += `<option>${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}</option>`;
+  time.innerHTML = opts;
+});
+
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = $('formErr');
+  const fail = (msg, reason) => { err.textContent = msg; err.hidden = false; $('result').hidden = true; log.info('submit', 'Заявка не прошла проверку', { reason }); };
+  const need = [['svc', 'услугу'], ['day', 'день'], ['time', 'время'], ['name', 'имя'], ['phone', 'телефон']].filter(([id]) => !$(id).value.trim()).map(x => x[1]);
+  if (need.length) return fail('Укажите: ' + need.join(', ') + '.', 'empty_fields');
+
+  const it = svc.value === 'other' ? null : itemByKey(svc.value);
+  if (svc.value !== 'other' && !it) return fail('Выберите услугу из списка.', 'bad_service');
+
+  const dayMsg = dayError($('day').value);
+  if (dayMsg) { $('dayErr').textContent = dayMsg; $('dayErr').hidden = false; return fail(dayMsg, 'bad_day'); }
+  if (![...$('time').options].some(o => o.value && o.value === $('time').value)) return fail('Выберите время из списка.', 'bad_time');
+
+  const digits = $('phone').value.replace(/\D/g, '');
+  if (digits.length < 10 || digits.length > 12) return fail('Проверьте номер телефона: нужно 10-11 цифр, например 8 900 000-00-00.', 'bad_phone');
+  if (!$('agree').checked) return fail('Отметьте согласие на обработку персональных данных.', 'no_consent');
+  err.hidden = true;
+
+  const s = it ? `${it.n} (${money(it.p)} руб. за ${it.u})` : 'Другая платная услуга';
+  const date = new Date($('day').value + 'T12:00:00').toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
+  const text = `Прошу записать меня на платную услугу.\n\nУслуга: ${s}\nЖелаемое время: ${date}, ${$('time').value}\nИмя: ${$('name').value.trim()}\nТелефон: ${$('phone').value.trim()}` +
+    ($('comment').value.trim() ? `\nКомментарий: ${$('comment').value.trim()}` : '') + '\n\nСогласие на обработку персональных данных даю.';
+  $('resultText').textContent = text;
+  $('mailBtn').href = `mailto:${MAIL}?subject=${encodeURIComponent('Запись на платную услугу')}&body=${encodeURIComponent(text)}`;
+  $('result').hidden = false;
+  $('result').scrollIntoView({ block: 'nearest' });
+  // Только обезличенные сведения: какая услуга и день, без имени и телефона
+  log.info('submit', 'Заявка подготовлена', { service: it ? svc.value : 'other', day: $('day').value, hasComment: !!$('comment').value.trim() });
+});
+
+/* ===== Копирование ===== */
+function copyText(text, okMsg, el) {
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Текст выделен, нажмите Ctrl+C'); };
+  try { navigator.clipboard.writeText(text).then(() => toast(okMsg), err => { log.warn('copyText', 'Буфер обмена недоступен', { error: err && err.message }); fallback(); }); }
+  catch (e) { log.warn('copyText', 'Буфер обмена недоступен', { error: e.message }); fallback(); }
+}
+$('copyBtn').addEventListener('click', () => copyText($('resultText').textContent, 'Заявка скопирована', $('resultText')));
+document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+  const el = $(b.dataset.copy); copyText(el.textContent, 'Скопировано: ' + el.textContent, el);
+}));
+log.info('init', 'Страница платных услуг готова', { services: GROUPS.reduce((n, g) => n + g.items.length, 0) });
+</script>
